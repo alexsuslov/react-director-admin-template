@@ -74,6 +74,7 @@
     "jquery": "^2.2.1",
     "js-base64": "^2.1.9",
     "moment": "^2.15.1",
+    "mqtt": "^2.2.1",
     "prismjs": "^1.5.1",
     "react": "^15.3.2",
     "react-addons-shallow-compare": "^15.3.2",

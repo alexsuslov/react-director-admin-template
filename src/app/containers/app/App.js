@@ -15,6 +15,8 @@ import { Modals }             from '../../views';
 import { appConfig }          from '../../config';
 import { navigation }         from '../../models';
 
+import Mqtt, { client } from '../../services/mqtt';
+
 class App extends Component {
 
   state = {
@@ -33,16 +35,26 @@ class App extends Component {
 
     fetchUserInfoDataIfNeeded();
     getSideMenuCollpasedStateFromLocalStorage();
+    client.publish('/test', 'Hello mqtt');
+  }
+  handleMessage(topic, message){
+    console.log('Message from mqtt:', {topic, message: message.toString()});
   }
 
   render() {
     const { appName, connectionStatus, helloWord } = this.state;
     const { userInfos, userIsConnected } = this.props;
     const { sideMenuIsCollapsed, currentView, children } = this.props;
-
+    const propsMqtt = {
+      onMessage: this.handleMessage,
+      subscribe:[
+        '/#'
+      ],
+    }
     const userFullName = `${userInfos.firstname} ${userInfos.lastname.toUpperCase()}`;
     return (
       <div>
+        <Mqtt {...propsMqtt} />
         <Header
           appName={appName}
           userLogin={userInfos.login}
