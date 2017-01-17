@@ -14,6 +14,7 @@ import {
 }                         from '../../components';
 import shallowCompare     from 'react-addons-shallow-compare';
 
+import Mqtt from '../../components/cmp/';
 
 class Home extends Component {
 
@@ -76,6 +77,7 @@ class Home extends Component {
         <div
           className="row"
           style={{marginBottom: '5px'}}>
+          <Mqtt />
           <div className="col-md-3">
             <StatsCard
               statValue={'3200'}
